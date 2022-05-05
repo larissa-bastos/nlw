@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+--primary-color: hsl(170, 100%, 26%);
+--headline: hsl(210, 11%, 15%);
+--paragraph: hsl(210, 9%, 31%);
+
+
+--bg-light: hsl(180, 14%, 97%);
+--brand-light: hsl(148, 23%, 89%);
+--brand-beige: hsl(39, 100%, 97%);
+
+--hover: #00453A;
+
+--navheight: 7.2rem;
+
+font-size: 62.5%;
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, 
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'DM Fonts', Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  text-align: center;
+  background-color: var(--bg-light);
+  overflow: overlay; /*ele deixa os valores aleatórios por cima ao invés de sobrepor? foi o que entendi*/
+}
+
+
+.wrapper {
+  width: 37.5rem;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
+  /* ====== O QUE É? ========
+  A gente criou aqui um container ou wrapper, uma caixinha que vai definir que os objetos vão receber a mesma largura. Aí tu bota umas coisas gerais aqui. */
+}
+
+ul {
+  list-style: none;
+}
+
+section {
+  padding-block: 10rem;
+
+}
+
+
+/* =========HOME ==========*/
+
+#home {
+  padding-top: calc(4.1rem + var(--navheight));
+}
+
+#home::before {
+  content: '';
+  width: 100%;/*isso aqui é VIEWPORT WIDTH, ou seja, 100vw = toda a largura da viewport. o height seria o mesmo, mas vh.*/
+  height: calc(108rem + var(--navheight));
+  background-color: var(--brand-light);
+  display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /*isso é o eixo de profundidade. 1 é o padrão, na frente do objeto. -1 é atrás dos objetos. */
+}
+
+#home h4 {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  margin-bottom: 1.6rem;
+}
+
+#home h1 {
+  font-size: 3.4rem;
+  color: var(--headline);
+  line-height: 130%;
+
+  margin-bottom: 2.4rem;
+}
+
+#home p {
+  font-size: 1.8rem;
+  line-height: 150%;
+  font-weight: 400;
+  color: var(--paragraph);
+  margin-bottom: 3.2rem;
+}
+
+#home button {
+  background-color: var(--primary-color);
+  margin-bottom: 6rem;
+
+  border-radius: 4rem;
+  border: none;
+
+  height: 6.2rem;
+  width: 26.3rem;
+  
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+}
+
+#home .mulher {
+  display: block; 
+  width: 26.4rem;  
+  margin-inline: auto;
+  object-position: 0 2rem;
+}
+
+#home .stats {
+  width: 32.7rem;
+  padding-block: 4rem; /*padding do eixo y, mesma coisa que top e bottom*/
+  margin-inline: auto; /*margem eixo x, mesma coisa que left e right */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6rem;
+
+  background-color: var(--brand-beige);
+  border: 1px solid var(--brand-light);
+  border-radius: 0.6rem;
+}
+
+#home .stat p {
+  margin: 0;
+  color: var(--primary-color);
+  line-height: 150%;
+  font-size: 1.6rem;
+}
+
+#home .stat h3 {
+  font-size: 4.8rem;
+  color: var(--headline);
+  line-height: 130%;
+
+  margin-bottom: 0.4rem;
+}
+
+/*========== NAV ============*/
+
+nav {
+  display: flex;
+
+  position: fixed;
+
+  height: var(--navheight);
+  top: 0;
+
+  z-index: 100;
+}
+
+nav .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav.scroll {
+  width: 100vw;
+  background-color: var(--primary-color);
+}
+
+nav.scroll svg:nth-child(1) path {
+  fill: white;
+}
+
+nav.scroll button path {
+  stroke: white;
+}
+
+/* =========== NTH CHILD??? ===========
+Propriedade que mostra qual filho especificamente tu vai mexer. Exemplo: svg (1) - o primeiro svg em ordem. No outro foi o segundo. 
+Para mudar a cor abrimos os svg e vimos onde mudavam as cores, aí mudamos de acordo */
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/*========MENU-EXPANDED - aparecerá com javascript===========*/
+
+.menu {
+  transform: translateY(100%);/* O que isso faz: pega tudo que ta em Y e joga 100% pra baixo, tipo o position do after effects. A gente está criando uma transição em que ele vai subir, então ele tem que começar de baixo. como os outros elementos tão hidden, fica tudo branco */
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expanded > :not(nav) {
+  visibility: hidden; 
+
+  /*isso aí em cima diz que tudo que ta dentro do body, quando o menu expandir, vai sumir, EXCETO o nav, que é o que a gente quer mostrar.*/
+  /*o > são para filhos de primeiro nível ta */
+}
+
+
+body.menu-expanded {
+  overflow: hidden;
+}
+
+body.menu-expanded .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: var(--navheight);
+
+  /*transition: opacity 700ms;  ======= um exemplo de transição de opacidade*/
+
+  transition: transform 300ms;
+  transform: translateY(0); /*  voltaremos ele para o 0, ou seja, de volta pra tela. E aí com o transition a gente faz a animação.  */
+  
+}
+
+.menu ul:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem; 
+  margin-top: 6rem;
+  
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+body.menu-expanded nav {
+  position: relative;
+}
+
+.menu .button {
+  background: white;
+  border-radius: 4rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--primary-color);
+  display: inline-block;
+  margin-top: 4.8rem;
+  margin-bottom: 8rem;
+  padding: 1.6rem 3.2rem;
+}
+
+.menu .social-links {
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded button {
+  position: relative;
+  z-index: 10;
+}
+
+body.menu-expanded .logo path {
+  fill: white;
+}
+
+body.menu-expanded button path {
+  stroke: white;
+}
+
+
+/*==========SERVICES=======*/
+
+#services header h4 {
+  font-size: 1.4rem;
+  line-height: 150%;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+
+  color: var(--primary-color);
+
+  margin-bottom: 1.6rem;
+}
+
+#services header h2 {
+  font-size: 3rem;
+  line-height: 3.9rem;
+  color: var(--headline);
+  margin-bottom: 6rem;
+}
+
+#services .cards {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+}
+
+#services .card {
+  padding: 2.4rem;
+  text-align: left;
+
+  background-color: white;
+
+  border: 1px solid var(--light);
+  border-radius: .6rem;
+}
+
+#services .card h3 {
+  margin-block: 1.6rem;
+}
+
