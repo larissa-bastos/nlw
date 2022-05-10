@@ -7,6 +7,23 @@
 }
 
 :root {
+  --hue: 176; /*a cor do h padrão do primary color e hover é 170*/
+
+  --primary-color: hsl(var(--hue), 100%, 26%);
+  --headline: hsl(210, 11%, 15%);
+  --paragraph: hsl(210, 9%, 31%);
+  
+  
+  --bg-light: hsl(180, 14%, 97%);
+  --brand-light: hsl(calc(var(--hue) - 22) /*esse cálculo é a diferença entre o hue (ou seja a cor do primary color original para a cor do h do brand light original, para ficar no mesmo esquema de cores.*/, 23%, 89%);
+  --brand-beige: hsl(39, 100%, 97%);
+  
+  --hover: hsl(var(--hue), 100%, 14%);
+  
+
+  /* COR PADRÃO
+======== VOU MOSTRAR A MUDANÇA DE COR EM CIMA
+
 --primary-color: hsl(170, 100%, 26%);
 --headline: hsl(210, 11%, 15%);
 --paragraph: hsl(210, 9%, 31%);
@@ -17,11 +34,10 @@
 --brand-beige: hsl(39, 100%, 97%);
 
 --hover: #00453A;
-
+*/
 --navheight: 7.2rem;
 
-font-size: 62.5%;
-
+font-size: 62.5%; /* 1 rem = 10px */
 }
 
 html {
@@ -35,16 +51,21 @@ body {
 }
 
 body {
-  font-family: 'DM Fonts', Arial, Helvetica, sans-serif;
+  font-family: 'DM Sans', Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
+
   text-align: center;
+
   background-color: var(--bg-light);
+
   overflow: overlay; /*ele deixa os valores aleatórios por cima ao invés de sobrepor? foi o que entendi*/
 }
 
 
 .wrapper {
-  width: 37.5rem;
+  /* tava com a largura fixa, mas não é bom para dispositivos maiores. A gente coloca dois valores, então ele escolhe o melhor.
+  width: 37.5rem;*/
+  width: min(50rem, 100%);
   margin-inline: auto;
   padding-inline: 2.4rem;
   /* ====== O QUE É? ========
@@ -55,112 +76,112 @@ ul {
   list-style: none;
 }
 
+img {
+  max-width: 100%;
+}
+
 section {
   padding-block: 10rem;
-
 }
 
+section header h4 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.08rem;
+    color: var(--primary-color);
 
-/* =========HOME ==========*/
+    margin-bottom: 1.6rem;
 
-#home {
-  padding-top: calc(4.1rem + var(--navheight));
+    text-transform: uppercase;
 }
 
-#home::before {
-  content: '';
-  width: 100%;/*isso aqui é VIEWPORT WIDTH, ou seja, 100vw = toda a largura da viewport. o height seria o mesmo, mas vh.*/
-  height: calc(108rem + var(--navheight));
-  background-color: var(--brand-light);
-  display: block;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1; /*isso é o eixo de profundidade. 1 é o padrão, na frente do objeto. -1 é atrás dos objetos. */
+section header h2 {
+    font-size: 3rem;
+    line-height: 3.9rem;
+    color: var(--headline);
 }
 
-#home h4 {
-  font-size: 1.4rem;
-  color: var(--primary-color);
-  margin-bottom: 1.6rem;
+section header h1 {
+    font-size: 3.4rem;
+    color: var(--headline);
+    line-height: 130%;
+  
+    margin-bottom: 2.4rem;  
 }
 
-#home h1 {
-  font-size: 3.4rem;
-  color: var(--headline);
-  line-height: 130%;
-
-  margin-bottom: 2.4rem;
-}
-
-#home p {
-  font-size: 1.8rem;
-  line-height: 150%;
-  font-weight: 400;
+section .content p {
   color: var(--paragraph);
-  margin-bottom: 3.2rem;
+
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
 }
 
-#home button {
+
+.button {
   background-color: var(--primary-color);
   margin-bottom: 6rem;
 
   border-radius: 4rem;
   border: none;
 
-  height: 6.2rem;
-  width: 26.3rem;
-  
+  padding: 1.6rem 3.2rem;
+  width: fit-content;
+
   color: #ffffff;
   text-transform: uppercase;
+  text-decoration: none;
   font-weight: 700;
   font-size: 1.4rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-inline: auto;
+
+  gap: 1.6rem;
 }
 
-#home .mulher {
-  display: block; 
-  width: 26.4rem;  
-  margin-inline: auto;
-  object-position: 0 2rem;
+.button:hover {
+  background-color: var(--hover);
+  transition: background 200ms;
 }
 
-#home .stats {
-  width: 32.7rem;
-  padding-block: 4rem; /*padding do eixo y, mesma coisa que top e bottom*/
-  margin-inline: auto; /*margem eixo x, mesma coisa que left e right */
 
+.social-links {
   display: flex;
-  flex-direction: column;
+  gap: 3.2rem;
+  align-items: center;
   justify-content: center;
-  gap: 6rem;
-
-  background-color: var(--brand-beige);
-  border: 1px solid var(--brand-light);
-  border-radius: 0.6rem;
 }
 
-#home .stat p {
-  margin: 0;
-  color: var(--primary-color);
-  line-height: 150%;
-  font-size: 1.6rem;
+/*========== CUSTOM COLORS ==========*/
+
+#services .card circle {
+  fill: var(--brand-light);
 }
 
-#home .stat h3 {
-  font-size: 4.8rem;
-  color: var(--headline);
-  line-height: 130%;
+#navigation .logo path[fill*='#00856F'],
+#backToTopButton circle {
+  fill: var(--primary-color);
+}
+/*o que isso diz:::: vai mudar a cor apenas do path do logo que tenha a cor marcada (que era verde)*/
 
-  margin-bottom: 0.4rem;
+#contact li path,
+button.open-menu path[stroke*='#00856F'] {
+  stroke: var(--primary-color);
 }
 
-/*========== NAV ============*/
+body.menu-expanded #navigation .logo path,
+#navigation.scroll .logo path {
+  fill: white;
+}
+
+#navigation.scroll button.open-menu path[stroke*='#00856F'] {
+  stroke: white;
+}
+
+/*================================ NAV =============================*/
 
 nav {
   display: flex;
@@ -169,6 +190,7 @@ nav {
 
   height: var(--navheight);
   top: 0;
+  width: 100vw;
 
   z-index: 100;
 }
@@ -180,17 +202,14 @@ nav .wrapper {
 }
 
 nav.scroll {
-  width: 100vw;
+
   background-color: var(--primary-color);
 }
-
-nav.scroll svg:nth-child(1) path {
+/* não precisa mais, vou deixar pela informação
+nav.scroll svg:nth-child(1) .logo path {
   fill: white;
 }
 
-nav.scroll button path {
-  stroke: white;
-}
 
 /* =========== NTH CHILD??? ===========
 Propriedade que mostra qual filho especificamente tu vai mexer. Exemplo: svg (1) - o primeiro svg em ordem. No outro foi o segundo. 
@@ -200,6 +219,11 @@ nav button {
   background: none;
   border: none;
   cursor: pointer;
+}
+
+nav .menu,
+nav .close-menu {
+  position: fixed;
 }
 
 /*========MENU-EXPANDED - aparecerá com javascript===========*/
@@ -234,7 +258,6 @@ body.menu-expanded {
 }
 
 body.menu-expanded .menu {
-  position: fixed;
   top: 0;
   left: 0;
   background-color: var(--primary-color);
@@ -248,13 +271,13 @@ body.menu-expanded .menu {
 
   transition: transform 300ms;
   transform: translateY(0); /*  voltaremos ele para o 0, ou seja, de volta pra tela. E aí com o transition a gente faz a animação.  */
-  
 }
 
 .menu ul:nth-child(1) {
   display: flex;
   flex-direction: column;
   gap: 4.8rem; 
+
   margin-top: 6rem;
   
   font-weight: 700;
@@ -267,9 +290,6 @@ body.menu-expanded .menu {
   text-decoration: none;
 }
 
-body.menu-expanded nav {
-  position: relative;
-}
 
 .menu .button {
   background: white;
@@ -279,24 +299,25 @@ body.menu-expanded nav {
   line-height: 2.3rem;
   text-transform: uppercase;
   text-decoration: none;
+
   color: var(--primary-color);
+
   display: inline-block;
   margin-top: 4.8rem;
   margin-bottom: 8rem;
   padding: 1.6rem 3.2rem;
 }
 
-.menu .social-links {
-  display: flex;
-  gap: 3.2rem;
-  align-items: center;
-  justify-content: center;
+.menu .button:hover {
+  background-color: var(--primary-color);
+  color: white;
+  filter: brightness(1.2);
 }
 
 body.menu-expanded .logo,
 body.menu-expanded button {
   position: relative;
-  z-index: 10;
+  z-index: 100;
 }
 
 body.menu-expanded .logo path {
@@ -308,23 +329,82 @@ body.menu-expanded button path {
 }
 
 
-/*==========SERVICES=======*/
 
-#services header h4 {
-  font-size: 1.4rem;
-  line-height: 150%;
-  letter-spacing: 0.08rem;
-  text-transform: uppercase;
 
-  color: var(--primary-color);
+/* =========HOME ==========*/
 
-  margin-bottom: 1.6rem;
+#home {
+  padding-block: 0;
+  padding-top: calc(4.1rem + var(--navheight));
 }
 
-#services header h2 {
-  font-size: 3rem;
-  line-height: 3.9rem;
+#home::before {
+  content: '';
+  width: 100%;/*isso aqui é VIEWPORT WIDTH, ou seja, 100vw = toda a largura da viewport. o height seria o mesmo, mas vh.*/
+  height: calc(76% + var(--navheight));
+  background-color: var(--brand-light);
+  display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /*isso é o eixo de profundidade. 1 é o padrão, na frente do objeto. -1 é atrás dos objetos. */
+}
+
+
+#home p {
+  font-size: 1.8rem;
+  line-height: 150%;
+  font-weight: 400;
+  color: var(--paragraph);
+  margin-bottom: 3.2rem;
+}
+
+#home img {
+  display: block; 
+  width: 26.4rem;  
+  margin-inline: auto;
+  object-position: 0 2rem;
+}
+
+#home .stats {
+  width: 100%;
+  padding-block: 4rem; /*padding do eixo y, mesma coisa que top e bottom*/
+  margin-inline: auto; /*margem eixo x, mesma coisa que left e right */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6rem;
+
+  background-color: var(--brand-beige);
+  border: 1px solid var(--brand-light);
+  border-radius: 0.6rem;
+}
+
+#home .stat p {
+  margin: 0;
+  color: var(--primary-color);
+  line-height: 150%;
+  font-size: 1.6rem;
+}
+
+#home .stat h3 {
+  font-size: 4.8rem;
   color: var(--headline);
+  line-height: 130%;
+
+  margin-bottom: 0.4rem;
+}
+
+#home .button {
+  margin-inline: auto;
+}
+
+
+/*==========SERVICES=======*/
+
+#services header h2 {
   margin-bottom: 6rem;
 }
 
@@ -340,7 +420,7 @@ body.menu-expanded button path {
 
   background-color: white;
 
-  border: 1px solid var(--light);
+  border: 1px solid var(--brand-light);
   border-radius: .6rem;
 }
 
@@ -348,3 +428,420 @@ body.menu-expanded button path {
   margin-block: 1.6rem;
 }
 
+
+/*==========ABOUT=======*/
+#about {
+text-align: left;
+background-color: var(--brand-beige);
+}
+
+
+#about header h2 {
+  margin-bottom: 2.4rem;
+}
+
+#about .content p {
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
+}
+
+
+
+
+/*==========CONTACT=======*/
+
+#contact {
+  text-align: left;
+}
+
+
+#contact header {
+  margin-bottom: 3.2rem;
+}
+
+#contact ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+
+/*==========FOOTER=================*/
+
+footer {
+  background-color: var(--primary-color);
+  padding-block: 6rem;
+
+  text-align: left;
+
+  color: white;
+}
+
+footer .logo {
+  display: inline-block; /*destrava algumas propriedades do block em elementos inline, como margin , width etc. */
+  margin-bottom: 2.4rem;
+}
+
+footer .logo svg {
+  width: 23.6rem;
+  height: 3.1rem;
+}
+
+footer .logo path {
+  fill: white;
+}
+
+footer p {
+  color: var(--brand-beige);
+  line-height: 2;
+
+  margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+  justify-content: flex-start;
+}
+
+
+/* =============== BACK TO TOP ====================*/
+
+#backToTopButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 3.5rem;
+  
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(100%);
+  transition: 200ms;
+}
+
+#backToTopButton.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+/* =============== RESPONSIVO =====================*/
+
+@media (min-width: 1024px) {
+  /* passar para o formato de pc. quando chegar em 1024px (o maik definiu como o nosso breakpoint) as propriedades dentro disso vao ser aplicadas, que serão as do layout inteiro. *pode ser em rem, mas ele disse que não precisa e nesse caso não vai fazer diferença, então manteve em px. 
+  
+  Primeiro vamos RESETAR O LAYOUT*/
+
+  /* =============== GERAL =====================*/
+
+  body {
+    overflow: auto;
+  }
+
+    .wrapper {
+      width: min(112rem, 100%);
+      /* a gente olhou no figma qual o limite maior do wrapper e colocou no mínimo*/
+      display: grid;
+      /* explicação de grids!
+      o grid trabalha com as caixas dentro da caixa que ele estiver (no nosso caso, a wrapper). O block vai trabalhar com as caixas ao redor, causando quebra de linha. O inline mantém o tamanho sem quebra de linha. o flex trabalha caixas internas, ou seja, os filhos. O grid também trabalha com os filhos, mas não vai colocar do lado da outra. 
+      PARA ISSO a gente vai mexer de novo no html. As coisas que organizamos dentro da wrapper vão se dividir em colunas. A gente cria uma div pra col-a e uma div col-b (e outras, dependendo do grid - nessa a gente criou 2, mas ja tinha stats, então são 3 filhos do grid). E aí coloca o conteúdo de cada uma dessas colunas na div que você quiser. Por exemplo, no caso da parte principal do nosso site, a imagem da mulher vai ficar na col-b e os outros conteúdos dentro da col-a. */
+    }
+
+    .col-b {
+      grid-area: B;
+    }
+
+    .col-a {
+      grid-area: A;
+    }
+
+    section {
+      padding-block: 16rem;
+    }
+
+
+    section header h2 {
+      font-size: 4rem;
+      line-height: 5.2rem;
+    }
+
+    /* =============== NAV =====================*/
+    /* reset */
+  nav#navigation .wrapper * {
+    margin: 0;
+    padding: 0;
+    visibility: initial;
+    display: initial;
+    opacity: initial;
+    flex-direction: initial;
+    position: initial;
+    font-size: initial;
+    transform: initial;
+    background-color: initial;
+    color: initial;
+    font-weight: initial;
+    filter: initial;
+    /*esse é nosso reset do wrapper. Initial significa voltar ao padrão do navegador. A declaração é: procure no nav id navegation (só pra ser mais específico e sobrescrever o código de cima) todos os elementos (*=todos) do wrapper.*/
+  }
+
+  nav#navigation .close-menu,
+  nav#navigation .open-menu,
+  nav#navigation .social-links {
+    display: none;
+  }
+
+  nav#navigation .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+    /* colocamos uma width aqui porque o space-between não tinha como formular o espaço, porque o menu que fizemos antes ja era uma caixa, fazendo com que os links todos virassem uma caixa só (não tinha muito espaço para eles se moverem)*/
+  }
+
+  nav#navigation .menu ul:nth-child(1) /*só a primeira lista, que no caso é o menu. a lista das redes sociais é o nth child 2*/ {
+  display: flex;
+  gap: 3.2rem;
+  }
+
+  nav#navigation .menu ul li a {
+    color: var(--primary-color);
+    opacity: 0.7;
+  }
+
+  nav#navigation .menu a.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2.4rem;
+
+    border: 1px solid var(--primary-color);
+    border-radius: 4rem;
+
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+  }
+
+  nav#navigation .menu a.button:hover {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+
+  }
+
+  nav#navigation.scroll .menu ul li a {
+    /* os itens do menu durante o scroll */
+    color: var(--bg-light);
+    opacity: 0.6; 
+
+  }
+
+  nav#navigation.scroll .menu a.button {
+  border-color: white;
+  color: white;
+  }
+
+
+  nav#navigation .menu li a {
+    transition: opacity .4s;
+  }
+
+  nav#navigation .menu li a:hover {
+    opacity: 1;
+    font-weight: 700;
+  }
+
+  nav#navigation .menu li a::after {
+    content: '';
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+
+    position: relative;
+    bottom: -2rem;
+    left: -0.6rem;
+
+    display: block;
+
+    transition: width 0.2s;
+  }
+
+  nav#navigation.scroll .menu li a::after {
+    background-color: white;
+  }
+
+  nav#navigation .menu li a:hover::after {
+    padding-inline: 0.8rem;
+    width: 100%;
+  }
+
+  nav#navigation.scroll .menu li a:hover {
+    opacity: 1;
+
+  }
+
+  nav#navigation.scroll .menu a.button:hover {
+    background-color: var(--primary-color);
+    filter: brightness(1.3);
+    border: none;
+  }
+
+
+  /* =============== HOME =====================*/
+
+  #home::before {
+    height: calc(96% - var(--navheight));
+  }
+
+  #home {
+    padding-top: var(--navheight);
+  }
+
+  #home .wrapper {
+    grid-template-columns: 60.5rem 1fr;
+    /*podemos usar %, fr (fração) ou só colocar o valor em rem..*/
+    grid-template-areas: 
+    'A B'
+    'C C';
+    /*isso define o grid. Ou seja: col A (definida no html) ta em cima a esquerda, col b em cima a direita, e col c (os stats) vao ocupar todo o espaço de baixo. Mas ainda temos que aplicar isso - veja nos #home .col-a as definições de grid. */
+  }
+
+  #home .col-a {  
+    text-align: left;
+    align-self: center;
+    /* a div .col-a vai ficar na área A. */
+  }
+
+  #home .button {
+    margin: 0;
+  }
+
+  #home h1 {
+    font-size: 5.2rem;
+
+  }
+
+  #home .content p {
+    font-size: 1.8rem;
+  }
+
+  #home img {
+    width: 42rem;
+  }
+
+  #home .stats {
+    grid-area: C;
+
+    flex-direction: row;
+
+    padding: 6rem;
+
+    gap: 0;
+  }
+
+  #home .stats .stat + .stat {
+    /*procurando no home por um stat dentro do stats que tenha um stat anterior a ele*/
+    border-left: 1px solid var(--primary-color);
+  }
+
+  #home .stats .stat {
+    flex: 1;
+  }
+
+  /* =============== SERVICES =====================*/
+
+  #services h2 {
+    width: 47rem;
+    margin-inline: auto;
+  }
+
+
+  #services .cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+
+  #services .card {
+    width: 30%;
+    flex-grow: 1;
+  }
+
+  /* =============== ABOUT =====================*/
+  #about .wrapper {
+    display: grid;
+    grid-template-columns: 48rem 1fr;
+    grid-template-areas: 'B A';
+    gap: 6.7rem;
+  }
+
+  #about .col-a {
+    align-self: center;
+  }
+
+  #about .content p {
+    margin-bottom: 0;
+  }
+
+  /* =============== CONTACT =====================*/
+
+  #contact .wrapper {
+    grid-template-columns: 1fr 57.5rem;
+    grid-template-areas: 'A B';
+    padding-inline: 0;
+    margin-inline: 0;
+  }
+
+  #contact h2 {
+    width: 40.4rem;
+
+  }
+
+  #contact .col-a {
+    align-self: center;
+    padding-left: 12.3rem;
+  }
+
+  #contact .col-b {
+    padding-right: 12.3rem;
+  }
+
+ MODIFICAÇÃO MINHA*/
+  /* =============== FOOTER =====================*/
+
+
+  
+  footer {
+    padding-block: 8rem;
+  }
+
+  footer .wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'A B';
+  }
+
+  footer .col-a {
+    align-self: center;
+  }
+
+  footer p {
+    margin-bottom: 0;
+  }
+
+  footer .col-b {
+    align-self: center;
+    justify-self: flex-end;
+  }
+
+
+
+}
